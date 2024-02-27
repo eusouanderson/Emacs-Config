@@ -1,0 +1,100 @@
+;; Remover boas vindas
+(setq inhibit-startup-message t)
+
+;; Remover Menus
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+
+
+;; Remover barra de rolagem
+(scroll-bar-mode -1)
+
+;; Linhas no código
+(global-linum-mode t)
+
+;; Tamanho da fonte
+(set-face-attribute 'default nil :height 100)
+
+;;Pacotes
+(require 'package)
+(setq package-enable-at-startup nil)
+
+;; MELPA - repositório
+(add-to-list 'package-archives
+	     '("melpa" . "https://melpa.org/packages/"))
+
+(package-initialize)
+
+
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+
+(use-package try
+  :ensure t)
+
+(use-package which-key
+  :ensure t
+  :config
+  (progn
+    (which-key-mode)
+  (which-key-setup-side-window-right)
+  )
+  )
+(use-package auto-complete
+  :ensure t
+  :init
+  (progn
+    (ac-config-default)
+    (global-auto-complete-mode t)))
+
+
+;; Custom automatic
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages '(python-black ## company try use-package)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+
+;; Definindo as cores
+(setq purple "#8a2be2")
+(setq black "#000000")
+
+;; Configuração do tema
+(custom-set-faces
+ ;; Cor de fundo
+ '(default ((t (:background "#000000"))))
+ ;; Cor do texto
+ '(font-lock-comment-face ((t (:foreground "#808080"))))
+ ;; Cor dos comentários
+ '(font-lock-string-face ((t (:foreground "#8a2be2"))))
+ ;; Outros elementos de sintaxe podem ser configurados da mesma forma
+ )
+
+;; Configuração da barra do cursor
+(set-cursor-color "#ffffff")
+
+;; Configuração do cursor
+(setq blink-cursor-mode nil)
+
+;; Configuração da barra de menu
+(menu-bar-mode -1)
+
+;; Configuração da barra de ferramentas
+(tool-bar-mode -1)
+
+;; Configuração da barra de rolagem
+(scroll-bar-mode -1)
+
+;; Configuração da fonte
+(set-frame-font "Monospace-10")
+
